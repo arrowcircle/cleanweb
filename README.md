@@ -1,5 +1,7 @@
 # Cleanweb
 
+[![Build Status](https://travis-ci.org/arrowcircle/cleanweb.png?branch=master)](https://travis-ci.org/arrowcircle/cleanweb)
+
 TODO: Write a gem description
 
 ## Installation
