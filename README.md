@@ -1,6 +1,7 @@
 # Cleanweb
 
 [![Build Status](https://travis-ci.org/arrowcircle/cleanweb.png?branch=master)](https://travis-ci.org/arrowcircle/cleanweb)
+[![Code Climate](https://codeclimate.com/github/arrowcircle/cleanweb.png)](https://codeclimate.com/github/arrowcircle/cleanweb)
 
 TODO: Write a gem description
 
