@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/arrowcircle/cleanweb.png?branch=master)](https://travis-ci.org/arrowcircle/cleanweb)
 [![Code Climate](https://codeclimate.com/github/arrowcircle/cleanweb.png)](https://codeclimate.com/github/arrowcircle/cleanweb)
 
-TODO: Write a gem description
+Cleanweb is Ruby gem Yandex Cleanweb service.
 
 ## Installation
 
@@ -11,17 +11,29 @@ Add this line to your application's Gemfile:
 
     gem 'cleanweb'
 
-And then execute:
+Get key here:
 
-    $ bundle
+    http://api.yandex.ru/key/form.xml?service=cw
 
-Or install it yourself as:
+Set key to Cleanweb class:
 
-    $ gem install cleanweb
+    Cleanweb.api_key = "YOUR KEY HERE"
 
 ## Usage
 
-TODO: Write usage instructions here
+To check if content spam or not, create a cleanweb instance and check it for spam:
+
+    cw = Cleanweb.new({:subject = > "My Test Subject", :body => "My Test Body"})
+    cw.spam?
+    => false
+
+You can add more info to initial params. Here is the list:
+
+* `ip` - user IP address,
+* `email` - user email,
+* `name` - user footer signature,
+* `login` - user login,
+* `realname` - user real name
 
 ## Contributing
 

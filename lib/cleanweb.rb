@@ -1,10 +1,15 @@
 # coding: utf-8
 
-class Cleanweb
+require 'net/http'
+require 'rexml/document'
+require 'open-uri'
 
-  require 'net/http'
-  require 'rexml/document'
-  require 'open-uri'
+class Cleanweb
+  require 'cleanweb/version'
+  require 'cleanweb/spam'
+
+  include Version
+  include Spam
 
   class KeyError < StandardError; end
   class NoSubjectError < StandardError; end
@@ -41,47 +46,9 @@ class Cleanweb
     raise NoSubjectError if @subject.nil?
   end
 
-  def parse_xml
-    xml = REXML::Document.new(ask_yandex)
-    res = []
-    begin
-      xml.root.elements.each("text") {|e| res << e.attributes["spam-flag"]}
-      xml.root.elements.each("links") do |links|
-        links.elements.each("link") {|e| res << e.attributes["spam-flag"]}
-      end
-    rescue
-    end
-    res.uniq
-  end
-
-  def spam?
-    results = parse_xml
-    if results == ["no"] && !results.empty?
-      false
-    else
-      true
-    end
-  end
-
   def check_body
     @body = @params[:body]
     raise NoBodyError if @body.nil?
-  end
-
-  def spam_params
-    res = {key: @@api_key}
-    @params.slice([:ip, :email, :name, :login, :realname]).each do |k, v|
-      res.merge!(k: v) if @params[k].present?
-    end
-    res["subject-plain"] = @subject
-    res["body-plain"] = @body
-    res
-  end
-
-  def ask_yandex
-    uri = URI.parse(SPAM_URL)
-    puts spam_params
-    Net::HTTP.post_form(uri, spam_params).body
   end
 
 end

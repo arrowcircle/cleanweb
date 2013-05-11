@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-# require 'cleanweb'
+require 'cleanweb'
 
 Gem::Specification.new do |spec|
   spec.name          = "cleanweb"
-  spec.version       = "0.0.1"
+  spec.version       = Cleanweb::Version::VERSION
   spec.authors       = ["Oleg Bovykin"]
   spec.email         = ["oleg.bovykin@gmail.com"]
   spec.description   = %q{Gem for Yandex Cleanweb intergation}
@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
+  spec.add_development_dependency "guard-rspec"
 end
